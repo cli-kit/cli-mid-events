@@ -9,11 +9,11 @@ module.exports = function() {
   var conf = this.configure();
   if(conf.events === false) return this;
   return function events(req, next) {
-    var z, arg;
+    var z, arg, name;
     for(z in req.result.all) {
       arg = this._options[z];
       if(arg) {
-        var name = arg.key();
+        name = arg.key();
         if(~reserved.indexOf(name)) name = prefix.name;
         this.emit(name, req, arg, req.result.all[z]);
       }
